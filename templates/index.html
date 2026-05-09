@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Home - RBAC System{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <h1>Welcome to RBAC System</h1>
+    <p>Role-Based Access Control with Admin Panel and REST API</p>
+    {% if 'user_id' not in session %}
+        <div style="margin-top: 2rem;">
+            <a href="{{ url_for('login') }}" class="btn btn-primary">Login</a>
+            <a href="{{ url_for('register') }}" class="btn btn-success">Register</a>
+        </div>
+    {% endif %}
+</div>
+
+<div class="grid">
+    <div class="card">
+        <div class="card-header">🔐 Role-Based Access</div>
+        <p>Secure authentication with two roles: Admin and User. Each role has specific permissions.</p>
+    </div>
+    
+    <div class="card">
+        <div class="card-header">📊 Student Management</div>
+        <p>Complete CRUD operations for student records with role-based restrictions.</p>
+    </div>
+    
+    <div class="card">
+        <div class="card-header">🔧 Admin Panel</div>
+        <p>Powerful admin dashboard to manage users and view all records.</p>
+    </div>
+    
+    <div class="card">
+        <div class="card-header">🌐 REST API</div>
+        <p>Full RESTful API endpoints for student management with JSON responses.</p>
+    </div>
+</div>
+{% endblock %}
