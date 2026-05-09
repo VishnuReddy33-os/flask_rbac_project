@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Panel - RBAC System{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        Admin Dashboard
+        <span style="font-size: 0.9rem; background: #e74c3c; color: white; padding: 0.2rem 0.5rem; border-radius: 5px;">
+            Admin Access Only
+        </span>
+    </div>
+    
+    <h3>System Statistics</h3>
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-number">{{ users|length }}</div>
+            <div class="stat-label">Total Users</div>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">{{ students|length }}</div>
+            <div class="stat-label">Total Students</div>
+        </div>
+    </div>
+    
+    <h3>User Management</h3>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Role</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.role }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+    <h3>All Student Records</h3>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Course</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in students %}
+                <tr>
+                    <td>{{ student.id }}</td>
+                    <td>{{ student.name }}</td>
+                    <td>{{ student.email }}</td>
+                    <td>{{ student.course }}</td>
+                    <td>
+                        <a href="{{ url_for('delete_student', id=student.id) }}" 
+                           class="btn btn-danger btn-sm" 
+                           onclick="return confirm('Delete this student?')">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
